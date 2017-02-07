@@ -19,7 +19,7 @@ func NewLogger(recs ...*Receiver) *Logger {
 	return l
 }
 
-// SimpleLogger returns a logger with one simple Receiver
+// NewSimpleLogger returns a logger with one simple Receiver
 func NewSimpleLogger(w io.Writer, lvl level, color bool) *Logger {
 	l := &Logger{}
 	r := NewReceiver(w)
@@ -87,7 +87,7 @@ func (l *Logger) Fatalf(format string, a ...interface{}) {
 	l.logAll(optFatal, fmt.Sprintf(format, a...))
 }
 
-// Short function to open a file with needed options
+// Open is a short function to open a file with needed options
 func Open(path string) (*os.File, error) {
 	return os.OpenFile(path, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0660)
 }

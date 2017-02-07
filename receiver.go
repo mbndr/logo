@@ -5,6 +5,7 @@ import (
 	"log"
 )
 
+// Receiver holds all receiver options
 type Receiver struct {
 	// Logger object from the builtin log package
 	logger *log.Logger
