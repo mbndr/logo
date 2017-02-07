@@ -24,7 +24,7 @@ func NewSimpleLogger(w io.Writer, lvl level, color bool) *Logger {
 	l := &Logger{}
 	r := NewReceiver(w)
 	r.Color = color
-    r.Level = lvl
+	r.Level = lvl
 	l.Receivers = []*Receiver{r}
 	return l
 }
@@ -79,7 +79,7 @@ func (l *Logger) Warnf(format string, a ...interface{}) {
 
 // Errorf logs formated arguments
 func (l *Logger) Errorf(format string, a ...interface{}) {
-	l.logAll(optFatal, fmt.Sprintf(format, a...))
+	l.logAll(optError, fmt.Sprintf(format, a...))
 }
 
 // Fatalf logs formated arguments
@@ -89,5 +89,5 @@ func (l *Logger) Fatalf(format string, a ...interface{}) {
 
 // Short function to open a file with needed options
 func Open(path string) (*os.File, error) {
-	return os.OpenFile("./example/logo.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0660)
+	return os.OpenFile(path, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0660)
 }

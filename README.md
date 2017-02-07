@@ -1,5 +1,7 @@
 # Logo
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/probandula/logo)](https://goreportcard.com/report/github.com/probandula/logo)
+
 A simple logging library for golang.
 
 I wanted to have a logger that is easy configurable with various `io.Writers` and a simple active and color on / off switch, so I created it.
