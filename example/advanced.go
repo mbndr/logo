@@ -20,17 +20,11 @@ func main() {
 
     // Receiver for the log file
     fileRec := logo.NewReceiver(logFile)
-    fileRec.Level = logo.WARN
+    fileRec.Level = logo.DEBUG
 
     // Create the logger
-    log := &logo.Logger{
-        Receivers: []*logo.Receiver{cliRec, fileRec},
-    }
+    log := logo.NewLogger(cliRec, fileRec)
 
     // Test some messages
-    log.Debug("Debug info")
-    log.Info("Information")
-    log.Warn("Just a warning")
-    log.Error("Error message")
-    log.Fatal("Fatal error")
+    log.Debug("Debug info", "and other info", 230)
 }
