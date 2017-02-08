@@ -42,7 +42,7 @@ func (r *Receiver) log(opt *levelOptions, s string) {
 // and sets default values
 func NewReceiver(w io.Writer, prefix string) *Receiver {
 	r := &Receiver{
-		logger: log.New(w, prefix+" ", log.LstdFlags),
+		logger: log.New(w, prefix, log.LstdFlags),
 	}
 	// Default options
 	r.Active = true

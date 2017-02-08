@@ -29,14 +29,14 @@ import "github.com/probandula/logo"
 It's possible to create a simple logger with a `io.Writer`, the log level and a color boolean as parameter.
 ```go
 // Create a simple cli logger with activated colors which logs everything
-log := logo.NewSimpleLogger(os.Stderr, logo.DEBUG, "prefix", true)
+log := logo.NewSimpleLogger(os.Stderr, logo.DEBUG, "prefix ", true)
 ```
 
 ### Advanced
 You can create multiple `Receivers` and add it to a new `Logger`.
 ```go
 // Receiver for the terminal which logs everything
-cliRec := logo.NewReceiver(os.Stderr, "prefix")
+cliRec := logo.NewReceiver(os.Stderr, "prefix ")
 cliRec.Color = true
 cliRec.Level = logo.DEBUG
 
@@ -46,7 +46,7 @@ logFile, _ := logo.Open("./example/logo.log")
 // Receiver for the log file
 // This will log with level INFO (default) and have no colors activated
 // Also the log format is simpler (f.e. ERRO: Message)
-fileRec := logo.NewReceiver(logFile, "prefix")
+fileRec := logo.NewReceiver(logFile, "prefix ")
 fileRec.Format = "%s: %s"
 
 // Create the logger
