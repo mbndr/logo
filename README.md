@@ -13,6 +13,15 @@ A `Logger` object can hold multiple `Receivers`. Every `Receiver` holds an `io.W
 
 ## Initilization
 
+First you have to install the package.
+```
+go get -u github.com/probandula/logo
+```
+After that you can import it.
+```go
+import "github.com/probandula/logo"
+```
+
 ### Simple
 It's possible to create a simple logger with a `io.Writer`, the log level and a color boolean as parameter.
 ```go
@@ -57,4 +66,10 @@ log.Infof("Listening on port %d", 8080)
 log.Warnf("Invalid user %s", user.Name)
 log.Errorf("Couldn't load config file: %s", path)
 log.Fatalf("Fatal error: %s", err.Error())
+```
+
+## Tests
+There are a few unit tests written for this library. To run them `cd` into the project directory and run this.
+```
+go test -v
 ```
