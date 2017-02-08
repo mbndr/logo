@@ -4,6 +4,8 @@
 
 A simple logging library for golang.
 
+![banner](./banner.png)
+
 I wanted to have a logger that is easy configurable with various `io.Writers` and a simple active and color on / off switch, so I created it.
 
 **Attention: Early stage, feel free to use and open issues**
