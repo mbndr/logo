@@ -85,6 +85,7 @@ func (l *Logger) Errorf(format string, a ...interface{}) {
 // Fatalf logs formated arguments
 func (l *Logger) Fatalf(format string, a ...interface{}) {
 	l.logAll(optFatal, fmt.Sprintf(format, a...))
+	os.Exit(1)
 }
 
 // Open is a short function to open a file with needed options
