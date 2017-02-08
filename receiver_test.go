@@ -6,8 +6,6 @@ import (
 	"testing"
 )
 
-// TODO color test
-
 // TestActive tests if a receiver logs only if it's active
 func TestActive(t *testing.T) {
 	// Create buffer and receiver
@@ -24,6 +22,52 @@ func TestActive(t *testing.T) {
 	r.log(optError, "Just a test")
 	if !strings.HasSuffix(buf.String(), "Just a test\n") {
 		t.Error("Buffer should be filled")
+	}
+}
+
+// TestDefaults checks if the default values are set correctly in the constructor
+func TestDefaults(t *testing.T) {
+	// Defaults: format, color, active
+	r := NewReceiver(bytes.NewBufferString(""))
+	if r.Format != "[%s] ▶ %s" {
+		t.Error("Default format is wrong")
+	}
+	if r.Color {
+		t.Error("Color should be off")
+	}
+	if !r.Active {
+		t.Error("Receiver should be activated")
+	}
+}
+
+// TestFormat checks if a format is parsed correctly
+func TestFormat(t *testing.T) {
+	// Create buffer and receiver
+	buf := bytes.NewBufferString("")
+	r := NewReceiver(buf)
+	r.Format = "%s::%s"
+	r.log(optInfo, "msg")
+	if !strings.HasSuffix(buf.String(), "INFO::msg\n") {
+		t.Error("Custom format should be active")
+	}
+}
+
+// TestColor checks if the colors are printed only if wanted
+func TestColor(t *testing.T) {
+	// Create buffer and receiver
+	buf := bytes.NewBufferString("")
+	r := NewReceiver(buf)
+	// No color
+	r.Color = false
+	r.log(optInfo, "msg")
+	if !strings.HasSuffix(buf.String(), "msg\n") {
+		t.Error("Color shouldn't be active")
+	}
+	// Color
+	r.Color = true
+	r.log(optInfo, "msg")
+	if !strings.HasSuffix(buf.String(), "\x1b[0;32m[INFO] ▶ msg\x1b[0m\n") {
+		t.Error("Color should be active")
 	}
 }
 
