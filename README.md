@@ -1,6 +1,5 @@
 # Logo
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/probandula/logo)](https://goreportcard.com/report/github.com/probandula/logo)
 
 A simple logging library for golang.
 
@@ -8,7 +7,8 @@ A simple logging library for golang.
 
 I wanted to have a logger that is easy configurable with various `io.Writers` and a simple active and color on / off switch, so I created it.
 
-**Attention: Early stage, feel free to use and open issues**
+[![Go Report Card](https://goreportcard.com/badge/github.com/probandula/logo)](https://goreportcard.com/report/github.com/probandula/logo)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/probandula/logo/blob/master/LICENSE)
 
 ## Explanation
 A `Logger` object can hold multiple `Receivers`. Every `Receiver` holds an `io.Writer` object (f.e. `os.File`, `os.Stderr`), a `Level` which is minimal the log level that is logged, a boolean `Active` which says if the `Receiver` should log or not, and a boolean `Color` which prints output colored if turned on. Every `Receiver` has also its own log format.
