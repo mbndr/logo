@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func main() {
+func advanced() {
 	// Open log file (io.Writer)
 	logFile, err := logo.Open("./example/logo.log")
 	if err != nil {

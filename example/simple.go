@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func main() {
+func simple() {
 	// Create a simple cli logger with activated colors
 	log := logo.NewSimpleLogger(os.Stderr, logo.DEBUG, true)
 
