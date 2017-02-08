@@ -20,11 +20,11 @@ func main() {
 
 	// Receiver for the log file
 	fileRec := logo.NewReceiver(logFile)
-	fileRec.Level = logo.DEBUG
+	fileRec.Format = "%s: %s"
 
 	// Create the logger
 	log := logo.NewLogger(cliRec, fileRec)
 
 	// Test some messages
-	log.Debug("Debug info", "and other info", 230)
+	log.Info("Information")
 }

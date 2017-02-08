@@ -10,5 +10,5 @@ func main() {
 	log := logo.NewSimpleLogger(os.Stderr, logo.DEBUG, true)
 
 	// Test some messages
-	log.Debug("Debug info", "and other info ", 230)
+	log.Debug("Debug info")
 }

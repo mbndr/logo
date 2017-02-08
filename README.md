@@ -9,7 +9,7 @@ I wanted to have a logger that is easy configurable with various `io.Writers` an
 **Attention: Early stage, feel free to use and open issues**
 
 ## Explanation
-A `Logger` object can hold multiple `Receivers`. Every `Receiver` holds an `io.Writer` object (f.e. `os.File`, `os.Stderr`), a `Level` which is minimal the log level that is logged, a boolean `Active` which says if the `Receiver` should log or not, and a boolean `Color` which prints output colored if turned on.
+A `Logger` object can hold multiple `Receivers`. Every `Receiver` holds an `io.Writer` object (f.e. `os.File`, `os.Stderr`), a `Level` which is minimal the log level that is logged, a boolean `Active` which says if the `Receiver` should log or not, and a boolean `Color` which prints output colored if turned on. Every `Receiver` has also its own log format.
 
 ## Initilization
 
@@ -33,7 +33,9 @@ logFile, _ := logo.Open("./example/logo.log")
 
 // Receiver for the log file
 // This will log with level INFO (default) and have no colors activated
+// Also the log format is simpler (f.e. ERRO: Message)
 fileRec := logo.NewReceiver(logFile)
+fileRec.Format = "%s: %s"
 
 // Create the logger
 log := logo.NewLogger(cliRec, fileRec)
@@ -56,7 +58,3 @@ log.Warnf("Invalid user %s", user.Name)
 log.Errorf("Couldn't load config file: %s", path)
 log.Fatalf("Fatal error: %s", err.Error())
 ```
-
-## Todo
-- Custom log format
-- Tests

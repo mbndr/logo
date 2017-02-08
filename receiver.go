@@ -1,8 +1,10 @@
 package logo
 
 import (
+	"fmt"
 	"io"
 	"log"
+	"strconv"
 )
 
 // Receiver holds all receiver options
@@ -12,6 +14,7 @@ type Receiver struct {
 	Level  level
 	Color  bool
 	Active bool
+	Format string
 }
 
 // Logs to the logger
@@ -21,15 +24,18 @@ func (r *Receiver) log(opt *levelOptions, s string) {
 		return
 	}
 
+	// Pre- and suffix
+	prefix := ""
+	suffix := "\n"
+
 	// Add colors if wanted
-	// TODO better here (no 2 prints!)
 	if r.Color {
-		r.logger.Printf("\x1b[0;%dm[%s] ▶ %s\x1b[0m\n", opt.Color, opt.Key, s)
-		return
+		prefix += fmt.Sprintf("\x1b[0;%sm", strconv.Itoa(opt.Color))
+		suffix = "\x1b[0m" + suffix
 	}
 
 	// Print to the logger
-	r.logger.Printf("[%s] ▶ %s\n", opt.Key, s)
+	r.logger.Printf(prefix+r.Format+suffix, opt.Key, s)
 }
 
 // NewReceiver returns a new Receiver object with a given Writer
@@ -41,6 +47,7 @@ func NewReceiver(w io.Writer) *Receiver {
 	// Default options
 	r.Active = true
 	r.Level = INFO
+	r.Format = "[%s] ▶ %s"
 
 	return r
 }
