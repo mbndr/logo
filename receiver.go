@@ -40,9 +40,9 @@ func (r *Receiver) log(opt *levelOptions, s string) {
 
 // NewReceiver returns a new Receiver object with a given Writer
 // and sets default values
-func NewReceiver(w io.Writer) *Receiver {
+func NewReceiver(w io.Writer, prefix string) *Receiver {
 	r := &Receiver{
-		logger: log.New(w, "", log.LstdFlags),
+		logger: log.New(w, prefix+" ", log.LstdFlags),
 	}
 	// Default options
 	r.Active = true

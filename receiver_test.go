@@ -10,7 +10,7 @@ import (
 func TestActive(t *testing.T) {
 	// Create buffer and receiver
 	buf := bytes.NewBufferString("")
-	r := NewReceiver(buf)
+	r := NewReceiver(buf, "")
 	// Set inactive and log
 	r.Active = false
 	r.log(optError, "Just a test")
@@ -28,7 +28,7 @@ func TestActive(t *testing.T) {
 // TestDefaults checks if the default values are set correctly in the constructor
 func TestDefaults(t *testing.T) {
 	// Defaults: format, color, active
-	r := NewReceiver(bytes.NewBufferString(""))
+	r := NewReceiver(bytes.NewBufferString(""), "")
 	if r.Format != "[%s] ▶ %s" {
 		t.Error("Default format is wrong")
 	}
@@ -44,7 +44,7 @@ func TestDefaults(t *testing.T) {
 func TestFormat(t *testing.T) {
 	// Create buffer and receiver
 	buf := bytes.NewBufferString("")
-	r := NewReceiver(buf)
+	r := NewReceiver(buf, "")
 	r.Format = "%s::%s"
 	r.log(optInfo, "msg")
 	if !strings.HasSuffix(buf.String(), "INFO::msg\n") {
@@ -56,7 +56,7 @@ func TestFormat(t *testing.T) {
 func TestColor(t *testing.T) {
 	// Create buffer and receiver
 	buf := bytes.NewBufferString("")
-	r := NewReceiver(buf)
+	r := NewReceiver(buf, "")
 	// No color
 	r.Color = false
 	r.log(optInfo, "msg")
@@ -75,7 +75,7 @@ func TestColor(t *testing.T) {
 func TestDebugLevels(t *testing.T) {
 	// Create buffer and receiver
 	buf := bytes.NewBufferString("")
-	r := NewReceiver(buf)
+	r := NewReceiver(buf, "")
 	// Set log level to debug
 	r.Level = DEBUG
 	r.log(optDebug, "Just a test")
