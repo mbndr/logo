@@ -9,6 +9,7 @@ I wanted to have a logger that is easy configurable with various `io.Writers` an
 
 [![Build Status](https://travis-ci.org/probandula/logo.svg?branch=master)](https://travis-ci.org/probandula/logo)
 [![Go Report Card](https://goreportcard.com/badge/github.com/probandula/logo)](https://goreportcard.com/report/github.com/probandula/logo)
+[![GoDoc](https://godoc.org/github.com/probandula/logo?status.svg)](https://godoc.org/github.com/probandula/logo)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/probandula/logo/blob/master/LICENSE)
 
 ## Explanation
