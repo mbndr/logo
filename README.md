@@ -70,6 +70,9 @@ log.Infof("Listening on port %d", 8080)
 log.Warnf("Invalid user %s", user.Name)
 log.Errorf("Couldn't load config file: %s", path)
 log.Fatalf("Fatal error: %s", err.Error())
+
+// Disable the logger
+log.Active = false
 ```
 
 ## Tests
