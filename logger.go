@@ -9,11 +9,13 @@ import (
 // Logger holds all Receivers
 type Logger struct {
 	Receivers []*Receiver
+	Active    bool
 }
 
 // NewLogger returns a new Logger filled with given Receivers
 func NewLogger(recs ...*Receiver) *Logger {
 	l := &Logger{
+		Active:    true, // Every logger is active by default
 		Receivers: recs,
 	}
 	return l
@@ -26,11 +28,17 @@ func NewSimpleLogger(w io.Writer, lvl level, prefix string, color bool) *Logger 
 	r.Color = color
 	r.Level = lvl
 	l.Receivers = []*Receiver{r}
+	l.Active = true
 	return l
 }
 
 // Write to all Receivers
 func (l *Logger) logAll(opt *levelOptions, s string) {
+	// Skip everythin if logger is disabled
+	if !l.Active {
+		return
+	}
+	// Log to all receivers
 	for _, r := range l.Receivers {
 		r.log(opt, s)
 	}
