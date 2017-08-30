@@ -19,11 +19,11 @@ A `Logger` object can hold multiple `Receivers`. Every `Receiver` holds an `io.W
 
 First you have to install the package.
 ```
-go get -u github.com/probandula/logo
+go get -u github.com/mbndr/logo
 ```
 After that you can import it.
 ```go
-import "github.com/probandula/logo"
+import "github.com/mbndr/logo"
 ```
 
 ### Simple
