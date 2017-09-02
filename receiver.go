@@ -11,7 +11,7 @@ import (
 type Receiver struct {
 	// Logger object from the builtin log package
 	logger *log.Logger
-	Level  level
+	Level  Level
 	Color  bool
 	Active bool
 	Format string

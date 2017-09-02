@@ -22,7 +22,7 @@ func NewLogger(recs ...*Receiver) *Logger {
 }
 
 // NewSimpleLogger returns a logger with one simple Receiver
-func NewSimpleLogger(w io.Writer, lvl level, prefix string, color bool) *Logger {
+func NewSimpleLogger(w io.Writer, lvl Level, prefix string, color bool) *Logger {
 	l := &Logger{}
 	r := NewReceiver(w, prefix)
 	r.Color = color
