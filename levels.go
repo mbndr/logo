@@ -1,5 +1,6 @@
 package logo
 
+// Level is a log level
 type Level int
 
 // Available log levels
@@ -29,7 +30,6 @@ var (
 
 // Itol converts an integer to a logo.Level
 // TODO is it possible to cast somehow?
-// TODO unit test this?
 func Itol(level int) Level {
 	switch level {
 	case 0:
