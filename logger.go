@@ -34,7 +34,7 @@ func NewSimpleLogger(w io.Writer, lvl Level, prefix string, color bool) *Logger 
 
 // Write to all Receivers
 func (l *Logger) logAll(opt *levelOptions, s string) {
-	// Skip everythin if logger is disabled
+	// Skip everything if logger is disabled
 	if !l.Active {
 		return
 	}

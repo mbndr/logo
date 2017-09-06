@@ -37,3 +37,68 @@ func TestNewSimple(t *testing.T) {
 		t.Error("Logger wasn't set to active")
 	}
 }
+
+// TestLogAll test if to all receivers is written
+// TODO test Fatal level (os.Exit()-problem)
+func TestLogLevels(t *testing.T) {
+	buf := bytes.NewBufferString("")
+	rec := NewReceiver(buf, "")
+	rec.Level = DEBUG
+	l := NewLogger(rec)
+
+	// Test Debug level
+	l.Debug("Test")
+	if buf.String() == "" {
+		t.Errorf("Buffer shouldn't be empty")
+	}
+	buf.Reset()
+
+	// Test Info level
+	l.Info("Test")
+	if buf.String() == "" {
+		t.Errorf("Buffer shouldn't be empty")
+	}
+	buf.Reset()
+
+	// Test Warn level
+	l.Warn("Test")
+	if buf.String() == "" {
+		t.Errorf("Buffer shouldn't be empty")
+	}
+	buf.Reset()
+
+	// Test Error level
+	l.Error("Test")
+	if buf.String() == "" {
+		t.Errorf("Buffer shouldn't be empty")
+	}
+	buf.Reset()
+
+
+	// Test Debug level with format
+	l.Debugf("Test")
+	if buf.String() == "" {
+		t.Errorf("Buffer shouldn't be empty")
+	}
+	buf.Reset()
+
+	// Test Info level with format
+	l.Infof("Test")
+	if buf.String() == "" {
+		t.Errorf("Buffer shouldn't be empty")
+	}
+	buf.Reset()
+
+	// Test Warn level with format
+	l.Warnf("Test")
+	if buf.String() == "" {
+		t.Errorf("Buffer shouldn't be empty")
+	}
+	buf.Reset()
+
+	// Test Error level with format
+	l.Errorf("Test")
+	if buf.String() == "" {
+		t.Errorf("Buffer shouldn't be empty")
+	}
+}

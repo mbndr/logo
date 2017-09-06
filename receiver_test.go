@@ -76,36 +76,47 @@ func TestDebugLevels(t *testing.T) {
 	// Create buffer and receiver
 	buf := bytes.NewBufferString("")
 	r := NewReceiver(buf, "")
+
 	// Set log level to debug
 	r.Level = DEBUG
 	r.log(optDebug, "Just a test")
 	if buf.String() == "" {
 		t.Errorf("Buffer shouldn't be empty")
 	}
+	buf.Reset()
+
 	// Set log level to info
 	r.Level = INFO
 	r.log(optInfo, "Just a test")
 	if buf.String() == "" {
 		t.Errorf("Buffer shouldn't be empty")
 	}
+	buf.Reset()
+
 	// Set log level to warn
 	r.Level = WARN
 	r.log(optWarn, "Just a test")
 	if buf.String() == "" {
 		t.Errorf("Buffer shouldn't be empty")
 	}
+	buf.Reset()
+
 	// Set log level to error
 	r.Level = ERROR
 	r.log(optError, "Just a test")
 	if buf.String() == "" {
 		t.Errorf("Buffer shouldn't be empty")
 	}
+	buf.Reset()
+
 	// Set log level to fatal
 	r.Level = FATAL
 	r.log(optFatal, "Just a test")
 	if buf.String() == "" {
 		t.Errorf("Buffer shouldn't be empty")
 	}
+	buf.Reset()
+
 	// Set log level to debug, this should show an warning
 	r.Level = DEBUG
 	r.log(optWarn, "Just a test")
