@@ -8,9 +8,9 @@ import (
 // TestNew checks if the logger is created correctly
 func TestNew(t *testing.T) {
 	// Create buffers
-	rec1 := NewReceiver(bytes.NewBufferString(""), "")
-	rec2 := NewReceiver(bytes.NewBufferString(""), "")
-	rec3 := NewReceiver(bytes.NewBufferString(""), "")
+	rec1 := NewReceiver(&bytes.Buffer{}, "")
+	rec2 := NewReceiver(&bytes.Buffer{}, "")
+	rec3 := NewReceiver(&bytes.Buffer{}, "")
 	// Create the logger
 	l := NewLogger(rec1, rec2, rec3)
 	if len(l.Receivers) != 3 {
@@ -24,7 +24,7 @@ func TestNew(t *testing.T) {
 // TestNewSimple checks if a simple logger is created correctly
 func TestNewSimple(t *testing.T) {
 	// Create the logger
-	l := NewSimpleLogger(bytes.NewBufferString(""), WARN, "", true)
+	l := NewSimpleLogger(&bytes.Buffer{}, WARN, "", true)
 	r := l.Receivers[0]
 	// Test stuff
 	if r.Level != WARN {
@@ -40,7 +40,7 @@ func TestNewSimple(t *testing.T) {
 
 // TestOnlyIfActive checks if it's only logged if logger is active
 func TestOnlyIfActive(t *testing.T) {
-	buf := bytes.NewBufferString("")
+	buf := &bytes.Buffer{}
 	rec := NewReceiver(buf, "")
 	rec.Level = DEBUG
 	l := NewLogger(rec)
@@ -55,7 +55,7 @@ func TestOnlyIfActive(t *testing.T) {
 // TestLogAll test if to all receivers is written
 // TODO test Fatal level (os.Exit()-problem)
 func TestLogLevels(t *testing.T) {
-	buf := bytes.NewBufferString("")
+	buf := &bytes.Buffer{}
 	rec := NewReceiver(buf, "")
 	rec.Level = DEBUG
 	l := NewLogger(rec)

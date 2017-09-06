@@ -9,6 +9,7 @@ I wanted to have a logger that is easy configurable with various `io.Writers` an
 
 [![Build Status](https://travis-ci.org/mbndr/logo.svg?branch=master)](https://travis-ci.org/mbndr/logo)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mbndr/logo)](https://goreportcard.com/report/github.com/mbndr/logo)
+[![Coverage](https://gocover.io/_badge/github.com/mbndr/logo)](https://gocover.io/github.com/mbndr/logo)
 [![GoDoc](https://godoc.org/github.com/mbndr/logo?status.svg)](https://godoc.org/github.com/mbndr/logo)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mbndr/logo/blob/master/LICENSE)
 
