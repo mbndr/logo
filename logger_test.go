@@ -38,6 +38,20 @@ func TestNewSimple(t *testing.T) {
 	}
 }
 
+// TestOnlyIfActive checks if it's only logged if logger is active
+func TestOnlyIfActive(t *testing.T) {
+	buf := bytes.NewBufferString("")
+	rec := NewReceiver(buf, "")
+	rec.Level = DEBUG
+	l := NewLogger(rec)
+	l.Active = false
+
+	l.Debug("This shouldn't be logged")
+	if buf.String() != "" {
+		t.Error("Buffer should be empty")
+	}
+}
+
 // TestLogAll test if to all receivers is written
 // TODO test Fatal level (os.Exit()-problem)
 func TestLogLevels(t *testing.T) {
