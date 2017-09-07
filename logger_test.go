@@ -88,7 +88,6 @@ func TestLogLevels(t *testing.T) {
 	}
 	buf.Reset()
 
-
 	// Test Debug level with format
 	l.Debugf("Test")
 	if buf.String() == "" {
