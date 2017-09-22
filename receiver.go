@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"strconv"
+	"strings"
 )
 
 // Receiver holds all receiver options
@@ -41,6 +42,12 @@ func (r *Receiver) log(opt *levelOptions, s string) {
 // NewReceiver returns a new Receiver object with a given Writer
 // and sets default values
 func NewReceiver(w io.Writer, prefix string) *Receiver {
+
+	// if a prefix is set and no trailing space is written, write one
+	if prefix != "" && !strings.HasSuffix(prefix, " ") {
+		prefix += " "
+	}
+
 	r := &Receiver{
 		logger: log.New(w, prefix, log.LstdFlags),
 	}
