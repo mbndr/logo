@@ -32,6 +32,13 @@ func NewSimpleLogger(w io.Writer, lvl Level, prefix string, color bool) *Logger 
 	return l
 }
 
+// Set level sets the log level of ALL receivers
+func (l *Logger) SetLevel(lvl Level) {
+    for _, r := range l.Receivers {
+        r.Level = lvl
+    }
+}
+
 // Write to all Receivers
 func (l *Logger) logAll(opt *levelOptions, s string) {
 	// Skip everything if logger is disabled
