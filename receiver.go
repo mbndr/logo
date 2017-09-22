@@ -18,6 +18,15 @@ type Receiver struct {
 	Format string
 }
 
+// SetPrefix sets the prefix of the logger.
+// If a prefix is set and no trailing space is written, write one
+func (r *Receiver) SetPrefix(prefix string) {
+	if prefix != "" && !strings.HasSuffix(prefix, " ") {
+		prefix += " "
+	}
+	r.logger.SetPrefix(prefix)
+}
+
 // Logs to the logger
 func (r *Receiver) log(opt *levelOptions, s string) {
 	// Don't do anything if not wanted
@@ -43,18 +52,17 @@ func (r *Receiver) log(opt *levelOptions, s string) {
 // and sets default values
 func NewReceiver(w io.Writer, prefix string) *Receiver {
 
-	// if a prefix is set and no trailing space is written, write one
-	if prefix != "" && !strings.HasSuffix(prefix, " ") {
-		prefix += " "
+	logger := log.New(w, "", log.LstdFlags)
+	r := &Receiver{
+		logger: logger,
 	}
 
-	r := &Receiver{
-		logger: log.New(w, prefix, log.LstdFlags),
-	}
 	// Default options
 	r.Active = true
 	r.Level = INFO
 	r.Format = "[%s] ▶ %s"
+
+	r.SetPrefix(prefix)
 
 	return r
 }

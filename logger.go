@@ -39,6 +39,13 @@ func (l *Logger) SetLevel(lvl Level) {
 	}
 }
 
+// SetPrefix sets the prefix of ALL receivers
+func (l *Logger) SetPrefix(prefix string) {
+	for _, r := range l.Receivers {
+		r.SetPrefix(prefix)
+	}
+}
+
 // Write to all Receivers
 func (l *Logger) logAll(opt *levelOptions, s string) {
 	// Skip everything if logger is disabled
