@@ -54,20 +54,20 @@ func TestOnlyIfActive(t *testing.T) {
 
 // TestSetLevel checks if the levels are set on all receivers
 func TestSetLevel(t *testing.T) {
-    buf := &bytes.Buffer{}
+	buf := &bytes.Buffer{}
 
-    rec1 := NewReceiver(buf, "")
-    rec1.Level = DEBUG
+	rec1 := NewReceiver(buf, "")
+	rec1.Level = DEBUG
 
-    rec2 := NewReceiver(buf, "")
-    rec2.Level = ERROR
+	rec2 := NewReceiver(buf, "")
+	rec2.Level = ERROR
 
-    l := NewLogger(rec1, rec2)
-    l.SetLevel(INFO)
+	l := NewLogger(rec1, rec2)
+	l.SetLevel(INFO)
 
-    if rec1.Level != INFO || rec2.Level != INFO {
-        t.Error("Level is not set correctly")
-    }
+	if rec1.Level != INFO || rec2.Level != INFO {
+		t.Error("Level is not set correctly")
+	}
 }
 
 // TestLogAll test if to all receivers is written
